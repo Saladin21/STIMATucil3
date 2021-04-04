@@ -1,0 +1,5 @@
+4
+titik1 1 1
+titik2 1 2
+titik3 2 2
+titik4 2 1
