@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Event Click LatLng</title>
+    <title>IF_MAP</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
@@ -14,30 +14,60 @@
       html,
       body {
         height: 100%;
-        margin: 0;
-        padding: 0;
+        width : 80%;
+        margin: 1;
+        padding: 1;
       }
     </style>
     <script>
         var id = 1;
+        var step = 1;
+        coords = [];
+        markers = [];
       function initMap() {
-        const myLatlng = { lat: -6.9175, lng: 107.6191 };
+        const myLatlng = { lat: -6.8915, lng: 107.6107 };
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 16,
           center: myLatlng,
         });
         
         // Configure the click listener.
-        map.addListener("click", (mapsMouseEvent) => {
+        if (step == 1){
+            map.addListener("click", (mapsMouseEvent) => {
+                
+            //bikin marker
+            let marker = new google.maps.Marker({
+                position: mapsMouseEvent.latLng,
+                map,
+                title: id.toString(),
+                
+            });
+            markers.push(marker);
 
-          //bikin marker
-          new google.maps.Marker({
-            position: mapsMouseEvent.latLng,
-            map,
-            title: id.toString(),
-        });
-        id += 1;
-        });
+            const URL = '/this-route'
+            const xhr = new XMLHttpRequest();
+            sender = JSON.stringify([id, mapsMouseEvent.latLng]);
+            xhr.open('POST', URL);
+            xhr.send(sender);
+            id += 1;
+
+            coords.push(mapsMouseEvent.latLng);
+            var line= new google.maps.Polyline({
+            path: coords,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+            });
+                line.setMap(map);
+            });
+        }else if (step == 2){
+            for (var i = 0; i <markers.length;i++){
+                window.google.maps.event.addListener(marker, 'click', function () {
+
+                });
+            }
+        }
       }
     </script>
   </head>
