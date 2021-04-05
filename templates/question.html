@@ -56,7 +56,7 @@
         
         var matrix = '{{matrix|tojson}}';
         matrix = JSON.parse(matrix);
-        //console.log(graph.length);
+        //console.log(matrix);
         // Configure the click listener.
             
             //bikin marker
@@ -66,16 +66,17 @@
                 map,
                 title: j.toString(),
                 });
+                coords.push(marker.getPosition());
                 //markers.push(marker);
                 window.google.maps.event.addListener(marker, 'click', function () {
                     console.log("click");
                     if (step == 1){
-                        coords.push(marker.getPosition());
+                        //coords.push(marker.getPosition());
                         id = marker.getTitle();
                         // ubah warna marker bisa pake marker.setIcon(imagenya)
                     }
                     else if(step == 2){
-                        coords.push(marker.getPosition());
+                        //coords.push(marker.getPosition());
                         id2 = marker.getTitle();
                         // ubah warna marker bisa pake marker.setIcon(imagenya)
                     }
@@ -84,6 +85,20 @@
                     }
                     step = step + 1;
                 });
+            }
+            for (var i = 0; i<coords.length;i++){
+                for (var j = 0; j<i;j++){
+                    if(matrix[i][j] == 1){
+                        var line= new google.maps.Polyline({
+                            path: [coords[i], coords[j]],
+                            geodesic: true,
+                            strokeColor: '#FF0000',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });   
+                        line.setMap(map);
+                    }
+                }
             }
       }
     </script>
