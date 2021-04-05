@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 graph = {}
 matrix = []
-
+buatAstar = []
 
 
 
@@ -25,6 +25,14 @@ def sendGraph():
     #matrix = [[0 for i in range (len(graph))] for j in range (len(graph))]
     print(matrix)
     return render_template('addEdge.html', graph=graph)
+
+@app.route('/question', methods =['POST'])
+def question():
+    return render_template('question.html', graph=graph, matrix=matrix)
+
+@app.route('/answer', methods =['POST'])
+def answer():
+    return render_template('question.html', graph=graph, matrix=matrix)
 
 #python route
 @app.route('/this-route', methods=['GET', 'POST'])

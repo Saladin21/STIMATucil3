@@ -25,6 +25,7 @@
         var step = 1;
         
         coords = [];
+        markers = [];
         function myFunc(vars) {
             return vars;
         }
@@ -40,6 +41,8 @@
         var graph = '{{graph|tojson}}';
         graph = JSON.parse(graph);
         
+        var matrix = '{{matrix|tojson}}';
+        matrix = JSON.parse(matrix);
         //console.log(graph.length);
         // Configure the click listener.
             
@@ -50,33 +53,36 @@
                 map,
                 title: j.toString(),
                 });
+                //markers.push(marker);
                 window.google.maps.event.addListener(marker, 'click', function () {
                     console.log("click");
                     if (step == 1){
                         coords = [];
                         coords.push(marker.getPosition());
                         id = marker.getTitle();
+                        // ubah warna marker bisa pake marker.setIcon(imagenya)
                         
                     }
-                    else{
+                    else if(step == 2){
                         coords.push(marker.getPosition());
-                        var line= new google.maps.Polyline({
-                        path: coords,
-                        geodesic: true,
-                        strokeColor: '#FF0000',
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                        });   
-                        line.setMap(map);
-
-                        const URL = '/kirim_matriks'
+                        // ubah warna marker bisa pake marker.setIcon(imagenya)
+                        const URL = '/kirim_simpul'
                         const xhr = new XMLHttpRequest();
                         sender = JSON.stringify([id, marker.getTitle()]);
                         xhr.open('POST', URL);
                         xhr.send(sender);
+
+
                     }
-                    step = step * -1;
+                    else{
+                        // tampil pesan error
+                    }
+                    step = step + 1;
                 });
+            }
+            
+            for (var i = 0; i <markers.length;i++){
+                
             }
 
       }
@@ -94,9 +100,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAODM10I674sTi_1kX905YhiM0QdzkFseY&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-    <form method="POST" action= "question" enctype="multipart/form-data">
-			<a><button type="submit" class="btn btn-default" value ="submit">Next</button></a>
-		</form>
+    <form method="POST" action= "answer" enctype="multipart/form-data">
+        <a><button type="submit" class="btn btn-default" value ="submit">Next</button></a>
+    </form>
     {% block body %}{% endblock %}
   </body>
 </html>
