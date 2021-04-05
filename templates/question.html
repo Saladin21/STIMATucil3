@@ -22,6 +22,7 @@
     
     <script>
         var id = 0;
+        var id2 = 0;
         var step = 1;
         
         coords = [];
@@ -30,7 +31,19 @@
             return vars;
         }
         
-
+      function reset(){
+          coords = [];
+          step = 1;
+          console.log("reset")
+      }
+      function sendSimpul(){
+        const URL = '/kirim_simpul'
+        const xhr = new XMLHttpRequest();
+        sender = JSON.stringify([id, id2]);
+        xhr.open('POST', URL);
+        xhr.send(sender);
+        console.log("send Simpul");
+      }
       function initMap() {
         const myLatlng = { lat: -6.8915, lng: 107.6107 };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -57,22 +70,14 @@
                 window.google.maps.event.addListener(marker, 'click', function () {
                     console.log("click");
                     if (step == 1){
-                        coords = [];
                         coords.push(marker.getPosition());
                         id = marker.getTitle();
                         // ubah warna marker bisa pake marker.setIcon(imagenya)
-                        
                     }
                     else if(step == 2){
                         coords.push(marker.getPosition());
+                        id2 = marker.getTitle();
                         // ubah warna marker bisa pake marker.setIcon(imagenya)
-                        const URL = '/kirim_simpul'
-                        const xhr = new XMLHttpRequest();
-                        sender = JSON.stringify([id, marker.getTitle()]);
-                        xhr.open('POST', URL);
-                        xhr.send(sender);
-
-
                     }
                     else{
                         // tampil pesan error
@@ -80,11 +85,6 @@
                     step = step + 1;
                 });
             }
-            
-            for (var i = 0; i <markers.length;i++){
-                
-            }
-
       }
     </script>
     {% block head %}{% endblock %}
@@ -101,8 +101,9 @@
       async
     ></script>
     <form method="POST" action= "answer" enctype="multipart/form-data">
-        <a><button type="submit" class="btn btn-default" value ="submit">Next</button></a>
+        <a><button type="submit" class="btn btn-default" value ="submit" onclick="sendSimpul()">Next</button></a>
     </form>
+    <button onclick="reset()">Reset</button>
     {% block body %}{% endblock %}
   </body>
 </html>
