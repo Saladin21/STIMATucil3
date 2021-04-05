@@ -21,9 +21,6 @@
     </style>
     <script>
         var id = 1;
-        var step = 1;
-        coords = [];
-        markers = [];
       function initMap() {
         const myLatlng = { lat: -6.8915, lng: 107.6107 };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -31,38 +28,27 @@
           center: myLatlng,
         });
         
-        // Configure the click listener.
-        if (step == 1){
-            map.addListener("click", (mapsMouseEvent) => {
-                
-            //bikin marker
-            let marker = new google.maps.Marker({
-                position: mapsMouseEvent.latLng,
-                map,
-                title: id.toString(),
-                
-            });
-            markers.push(marker);
-
-            const URL = '/this-route'
-            const xhr = new XMLHttpRequest();
-            sender = JSON.stringify([id, mapsMouseEvent.latLng]);
-            xhr.open('POST', URL);
-            xhr.send(sender);
-            id += 1;
-
-            });
+        map.addListener("click", (mapsMouseEvent) => {
             
-        }else if (step == 2){
-            for (var i = 0; i <markers.length;i++){
-                window.google.maps.event.addListener(marker, 'click', function () {
+        //bikin marker
+        let marker = new google.maps.Marker({
+            position: mapsMouseEvent.latLng,
+            map,
+            title: id.toString(),
+            
+        });
+        markers.push(marker);
 
-                });
-            }
-        }
+        const URL = '/this-route'
+        const xhr = new XMLHttpRequest();
+        sender = JSON.stringify([id, mapsMouseEvent.latLng]);
+        xhr.open('POST', URL);
+        xhr.send(sender);
+        id += 1;
+        });
       }
     </script>
-    {% block head %}{% endblock %}
+
   </head>
   <body>
     <h3>

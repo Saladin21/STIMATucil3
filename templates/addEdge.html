@@ -25,7 +25,6 @@
         var step = 1;
         
         coords = [];
-        markers = [];
         function myFunc(vars) {
             return vars;
         }
@@ -51,7 +50,6 @@
                 map,
                 title: j.toString(),
                 });
-                //markers.push(marker);
                 window.google.maps.event.addListener(marker, 'click', function () {
                     console.log("click");
                     if (step == 1){
@@ -76,15 +74,9 @@
                         sender = JSON.stringify([id, marker.getTitle()]);
                         xhr.open('POST', URL);
                         xhr.send(sender);
-
-
                     }
                     step = step * -1;
                 });
-            }
-            
-            for (var i = 0; i <markers.length;i++){
-                
             }
 
       }
