@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, jsonify
+from flask import Flask, render_template, url_for, request, redirect, jsonify, send_file
 from findPath import findPath
 import json
 
@@ -100,6 +100,32 @@ def dapetSimpul():
     buatAstar.append(info[0])
     buatAstar.append(info[1])
     return "1"
+
+
+@app.route('/downloadGraph', methods = ['GET', 'POST'])
+def downloadGraph():
+    path = "files/Graph.txt"
+    f = open(path, "w")
+    f.write(str(len(graph)))
+    f.write("\n")
+    for key in graph:
+        s = str(graph[key][0]) + " " + str(graph[key][0]) + " " + str(key)
+        f.write(s)
+        f.write("\n")
+    f.close()
+    return send_file(path, as_attachment=True)
+
+@app.route('/downloadMatriks', methods = ['GET', 'POST'])
+def downloadMatriks():
+    path = "files/Matriks.txt"
+    f = open(path, "w")
+    for i in range (len(matrix)):
+        for j in range (len(matrix)):
+            f.write(str(matrix[i][j]))
+            f.write(" ")
+        f.write("\n")
+    f.close()
+    return send_file(path, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
