@@ -16,17 +16,19 @@
         
 
       function initMap() {
-        const myLatlng = { lat: -6.8915, lng: 107.6107 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 15,
-          center: myLatlng,
-        });
-        
         var graph = '{{graph|tojson}}';
         graph = JSON.parse(graph);
 
         var node = '{{node|tojson}}';
         node = JSON.parse(node);
+        
+        const myLatlng = { lat: graph[node[1]][0], lng: graph[node[1]][1] };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: myLatlng,
+        });
+        
+        
         
         //console.log(graph.length);
         // Configure the click listener.

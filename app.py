@@ -33,7 +33,7 @@ def uploadFile():
         if (namafile.startswith("Matriks")):
             tempmatrix = content.strip().split('\n')
             for isi in tempmatrix:
-                tempisi = map(int, isi.split(' '))
+                tempisi = map(int, isi.strip().split(' '))
                 matrix.append(list(tempisi))
         elif(namafile.startswith("Graph")):
             location = content.strip().split('\n')
@@ -109,7 +109,7 @@ def downloadGraph():
     f.write(str(len(graph)))
     f.write("\n")
     for key in graph:
-        s = str(graph[key][0]) + " " + str(graph[key][0]) + " " + str(key)
+        s = str(graph[key][0]) + " " + str(graph[key][1]) + " " + str(key)
         f.write(s)
         f.write("\n")
     f.close()
