@@ -55,6 +55,9 @@
         
         var graph = '{{graph|tojson}}';
         graph = JSON.parse(graph);
+
+        var node = '{{node|tojson}}';
+        node = JSON.parse(node);
         
         var matrix = '{{matrix|tojson}}';
         matrix = JSON.parse(matrix);
@@ -74,14 +77,14 @@
             for (var j = 1; j<=Object.keys(graph).length;j++){
                 
                 let marker = new google.maps.Marker({
-                position: { lat: graph[j][0], lng: graph[j][1]},
+                position: { lat: graph[node[j]][0], lng: graph[node[j]][1]},
                 map,
-                title: j.toString(),
+                title: node[j],
                 });
 
-                if (hasil[1].indexOf(j) >= 0){
+                if (hasil[1].indexOf(node[j]) >= 0){
                     marker.setIcon(icon1);
-                    if (hasil[1].indexOf(j) == 0){
+                    if (hasil[1].indexOf(node[j]) == 0){
                         marker1= marker;
                     }
                 }else{
@@ -107,7 +110,7 @@
             console.log(coords);
             for (var i = 0; i<Object.keys(hasil[1]).length;i++ ){
                 console.log(i);
-                coordHasil.push(coords[hasil[1][i]-1]);
+                coordHasil.push(coords[node.indexOf(hasil[1][i])-1]);
             }
             console.log(coordHasil);
             var line1= new google.maps.Polyline({
@@ -127,6 +130,7 @@
     <h3>
         IF_MAP
     </h3>
+    <p> Jalur terpendek berwarna biru</p>
     <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
@@ -135,6 +139,8 @@
       async
     ></script>
     
-    {% block body %}{% endblock %}
+    <form action= "/" enctype="multipart/form-data">
+        <a><button type="submit" class="btn btn-default" value ="submit">Main Menu</button></a>
+    </form>
   </body>
 </html>

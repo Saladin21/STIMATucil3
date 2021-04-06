@@ -53,19 +53,25 @@
         console.log("send Simpul");
       }
       function initMap() {
-        const myLatlng = { lat: -6.8915, lng: 107.6107 };
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 15,
-          center: myLatlng,
-        });
+        
         
         var graph = '{{graph|tojson}}';
         graph = JSON.parse(graph);
+
+        var node = '{{node|tojson}}';
+        node = JSON.parse(node);
         
         var matrix = '{{matrix|tojson}}';
         matrix = JSON.parse(matrix);
         //console.log(matrix);
         // Configure the click listener.
+
+        const myLatlng = { lat: graph[node[1]][0], lng: graph[node[1]][1] };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: myLatlng,
+        });
+
         infowindow = new google.maps.InfoWindow({
           content: '<p>Tekan reset untuk memilih ulang simpul</p>',
         });
@@ -74,9 +80,9 @@
             //bikin marker
             for (var j = 1; j<=Object.keys(graph).length;j++){
                 let marker = new google.maps.Marker({
-                position: { lat: graph[j][0], lng: graph[j][1]},
+                position: { lat: graph[node[j]][0], lng: graph[node[j]][1]},
                 map,
-                title: j.toString(),
+                title: node[j],
                 });
                 coords.push(marker.getPosition());
                 //markers.push(marker);
@@ -123,6 +129,7 @@
     <h3>
         IF_MAP
     </h3>
+    <p> Pilih simpul awal dan simpul tujuan</p>
     <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

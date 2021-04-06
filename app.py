@@ -7,12 +7,46 @@ app = Flask(__name__)
 
 graph = {}
 matrix = []
+node = [""]
 buatAstar = []
 
 
 
-
 @app.route('/')
+def home():
+    while(graph):
+        graph.popitem()
+    while (matrix):
+        matrix.pop(0)
+    while (buatAstar):
+        buatAstar.pop(0)
+    while (len(node) > 1):
+        node.pop(0)
+    return render_template('base.html')
+
+@app.route('/', methods = ['POST', 'GET'])
+def uploadFile():
+    uploaded_file = request.files.getlist('Fileinput')
+    for file_to_upload in uploaded_file:
+        content = file_to_upload.read().decode("utf-8")
+        namafile = file_to_upload.filename
+        if (namafile == "Matriks.txt"):
+            tempmatrix = content.strip().split('\n')
+            for isi in tempmatrix:
+                tempisi = map(int, isi.split(' '))
+                matrix.append(list(tempisi))
+        elif(namafile == "Graph.txt"):
+            location = content.strip().split('\n')
+            for i in range(1, len(location)):
+                temp = location[i].strip('\r').split(' ' , 2)
+                graph[temp[2]] = [float(temp[0]), float(temp[1])]
+                node.append(temp[2])
+    print(matrix)
+    print(graph)
+    return render_template('base.html')
+
+
+@app.route('/map', methods = ['POST'])
 def index():
     while(graph):
         graph.popitem()
@@ -26,11 +60,11 @@ def sendGraph():
         matrix.append([0 for i in range(len(graph))])
 
     #print(matrix)
-    return render_template('addEdge.html', graph=graph)
+    return render_template('addEdge.html', graph=graph, node=node)
 
 @app.route('/question', methods =['POST'])
 def question():
-    return render_template('question.html', graph=graph, matrix=matrix)
+    return render_template('question.html', graph=graph, matrix=matrix, node=node)
 
 @app.route('/answer', methods =['POST'])
 def answer():
@@ -38,10 +72,10 @@ def answer():
     print(buatAstar)
     print(graph)
     print(matrix)
-    hasil = fp.Astar(int(buatAstar[0]), int(buatAstar[1]))
+    hasil = fp.Astar(buatAstar[0], buatAstar[1])
     hasil[0] = round(hasil[0], 3)
     print(hasil)
-    return render_template('answer.html', graph=graph, matrix=matrix, hasil = hasil)
+    return render_template('answer.html', graph=graph, matrix=matrix, hasil = hasil, node=node)
 
 #python route
 @app.route('/this-route', methods=['GET', 'POST'])

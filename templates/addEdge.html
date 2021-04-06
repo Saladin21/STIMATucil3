@@ -39,6 +39,9 @@
         
         var graph = '{{graph|tojson}}';
         graph = JSON.parse(graph);
+
+        var node = '{{node|tojson}}';
+        node = JSON.parse(node);
         
         //console.log(graph.length);
         // Configure the click listener.
@@ -46,9 +49,9 @@
             //bikin marker
             for (var j = 1; j<=Object.keys(graph).length;j++){
                 let marker = new google.maps.Marker({
-                position: { lat: graph[j][0], lng: graph[j][1]},
+                position: { lat: graph[node[j]][0], lng: graph[node[j]][1]},
                 map,
-                title: j.toString(),
+                title: node[j],
                 });
                 window.google.maps.event.addListener(marker, 'click', function () {
                     console.log("click");
@@ -87,6 +90,7 @@
     <h3>
         IF_MAP
     </h3>
+    <p> Tekan 2 simpul untuk menambah sisi</p>
     <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
