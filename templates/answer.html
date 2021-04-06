@@ -76,6 +76,10 @@
                 coords.push(marker.getPosition());
                 //markers.push(marker);
             }
+
+            window.google.maps.event.addListener(marker1, 'click', function () {
+              infowindow.open(map, marker1);
+            });
             for (var i = 0; i<coords.length;i++){
                 for (var j = 0; j<i;j++){
                     if(matrix[i][j] == 1){
