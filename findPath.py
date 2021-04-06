@@ -9,10 +9,10 @@ class findPath:
     def EucDist(self, s1, s2):
         # sumber : https://community.esri.com/t5/coordinate-reference-systems/distance-on-a-sphere-the-haversine-formula/ba-p/902128
 
-        lat1 = graph[s1][0]
-        lon1 = graph[s1][1]
-        lat2 = graph[s2][0]
-        lon2 = graph[s2][1]
+        lat1 = self.graph[s1][0]
+        lon1 = self.graph[s1][1]
+        lat2 = self.graph[s2][0]
+        lon2 = self.graph[s2][1]
 
         R = 6371000  # radius of Earth in meters
         phi_1 = math.radians(lat1)
@@ -53,7 +53,7 @@ class findPath:
         g = self.jatot(element[1])
         x = self.node.index(element[1][-1])
         for i in range(len(self.node)):
-            if(self.matrix[x][i] == '1'):
+            if(self.matrix[x][i] == 1):
                 temp = element[1].copy()
                 temp.append(self.node[i])
                 hasil.append([g+self.EucDist(element[1][-1], self.node[i])+self.EucDist(self.node[i], simpulTujuan), temp])

@@ -30,6 +30,7 @@
         var marker2;
         var infowindow;
         coords = [];
+        coordHasil = [];
         markers = [];
         
         
@@ -37,13 +38,6 @@
             return vars;
         }
         
-      function reset(){
-          step = 1;
-          marker1.setIcon();
-          marker2.setIcon();
-          infowindow.close();
-          console.log("reset")
-      }
       function sendSimpul(){
         const URL = '/kirim_simpul'
         const xhr = new XMLHttpRequest();
@@ -64,42 +58,37 @@
         
         var matrix = '{{matrix|tojson}}';
         matrix = JSON.parse(matrix);
+
+        var hasil = '{{hasil|tojson}}';
+        hasil = JSON.parse(hasil);
+        console.log(hasil);
+        console.log(hasil[1]);
         //console.log(matrix);
         // Configure the click listener.
         infowindow = new google.maps.InfoWindow({
-          content: '<p>Tekan reset untuk memilih ulang simpul</p>',
+          content: '<p>' + hasil[0] + ' meter' + '</p>',
         });
-        
+            
             
             //bikin marker
             for (var j = 1; j<=Object.keys(graph).length;j++){
+                
                 let marker = new google.maps.Marker({
                 position: { lat: graph[j][0], lng: graph[j][1]},
                 map,
                 title: j.toString(),
                 });
+
+                if (hasil[1].indexOf(j) >= 0){
+                    marker.setIcon(icon1);
+                    if (hasil[1].indexOf(j) == 0){
+                        marker1= marker;
+                    }
+                }else{
+                    marker.setIcon(icon2);
+                }
                 coords.push(marker.getPosition());
                 //markers.push(marker);
-                window.google.maps.event.addListener(marker, 'click', function () {
-                    console.log("click");
-                    if (step == 1){
-                        //coords.push(marker.getPosition());
-                        id = marker.getTitle();
-                        marker.setIcon(icon1);
-                        marker1 = marker;
-                    }
-                    else if(step == 2){
-                        //coords.push(marker.getPosition());
-                        id2 = marker.getTitle();
-                        marker.setIcon(icon2);
-                        marker2 = marker;
-                        // ubah warna marker bisa pake marker.setIcon(imagenya)
-                    }
-                    else{
-                      infowindow.open(map, marker);
-                    }
-                    step = step + 1;
-                });
             }
             for (var i = 0; i<coords.length;i++){
                 for (var j = 0; j<i;j++){
@@ -115,6 +104,21 @@
                     }
                 }
             }
+            console.log(coords);
+            for (var i = 0; i<Object.keys(hasil[1]).length;i++ ){
+                console.log(i);
+                coordHasil.push(coords[hasil[1][i]-1]);
+            }
+            console.log(coordHasil);
+            var line1= new google.maps.Polyline({
+                            path: coordHasil,
+                            geodesic: true,
+                            strokeColor: '#0000FF',
+                            strokeOpacity: 1.0,
+                            strokeWeight: 2
+                        });
+            line1.setMap(map); 
+            infowindow.open(map, marker1);  
       }
     </script>
     {% block head %}{% endblock %}
@@ -130,10 +134,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAODM10I674sTi_1kX905YhiM0QdzkFseY&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-    <form method="POST" action= "answer" enctype="multipart/form-data">
-        <a><button type="submit" class="btn btn-default" value ="submit" onclick="sendSimpul()">Next</button></a>
-    </form>
-    <button onclick="reset()">Reset</button>
+    
     {% block body %}{% endblock %}
   </body>
 </html>
