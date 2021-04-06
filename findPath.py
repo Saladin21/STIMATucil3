@@ -47,7 +47,7 @@ class findPath:
                 listActive.sort(key=self.bantuSort)
                 return self.Astarrec(listActive, simpulTujuan)
 
-    def generate(self, element, simpulTujuan):
+    def generate(self, element, simpulTujuan): #Membangkitkan simpul yang terhubung
         hasil = []
         g = self.jatot(element[1])
         x = self.node.index(element[1][-1])
@@ -68,5 +68,5 @@ class findPath:
                 s += self.EucDist(l[i-1], l[i])
             return s
 
-    def bantuSort(self, element): # ya... buat bantu sort bang
+    def bantuSort(self, element): #buat bantu sort
         return element[0]
