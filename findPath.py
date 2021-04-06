@@ -34,7 +34,6 @@ class findPath:
         return self.Astarrec([[self.EucDist(s1, s2), [s1]]], s2)
 
     def Astarrec(self, listActive, simpulTujuan):
-        print(listActive)
         if(len(listActive) == 0):
             return ["ga nyambung", [simpulTujuan]]
         else:

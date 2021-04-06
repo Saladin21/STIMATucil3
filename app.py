@@ -41,8 +41,6 @@ def uploadFile():
                 temp = location[i].strip('\r').split(' ' , 2)
                 graph[temp[2]] = [float(temp[0]), float(temp[1])]
                 node.append(temp[2])
-    print(matrix)
-    print(graph)
     return render_template('base.html')
 
 
@@ -59,9 +57,6 @@ def sendGraph():
     for j in range(len(graph)):
         matrix.append([0 for i in range(len(graph))])
 
-    print(matrix)
-    print(graph)
-    print(node)
     return render_template('addEdge.html', graph=graph, node=node)
 
 @app.route('/question', methods =['POST'])
@@ -71,13 +66,11 @@ def question():
 @app.route('/answer', methods =['POST'])
 def answer():
     fp = findPath(graph, matrix)
-    print(buatAstar)
-    print(graph)
-    print(matrix)
+
     hasil = fp.Astar(buatAstar[0], buatAstar[1])
     if(type(hasil[0]) != str):
         hasil[0] = round(hasil[0], 3)
-    print(hasil)
+
     return render_template('answer.html', graph=graph, matrix=matrix, hasil = hasil, node=node)
 
 #python route
@@ -106,7 +99,6 @@ def dapetSimpul():
     info = json.loads(request.data)
     buatAstar.append(info[0])
     buatAstar.append(info[1])
-    print(buatAstar)
     return "1"
 
 if __name__ == "__main__":
