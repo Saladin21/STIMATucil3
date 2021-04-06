@@ -30,12 +30,12 @@ def uploadFile():
     for file_to_upload in uploaded_file:
         content = file_to_upload.read().decode("utf-8")
         namafile = file_to_upload.filename
-        if (namafile == "Matriks.txt"):
+        if (namafile.startswith("Matriks")):
             tempmatrix = content.strip().split('\n')
             for isi in tempmatrix:
                 tempisi = map(int, isi.split(' '))
                 matrix.append(list(tempisi))
-        elif(namafile == "Graph.txt"):
+        elif(namafile.startswith("Graph")):
             location = content.strip().split('\n')
             for i in range(1, int(location[0])+1):
                 temp = location[i].strip('\r').split(' ' , 2)
