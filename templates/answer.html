@@ -23,14 +23,6 @@
             return vars;
         }
         
-      function sendSimpul(){
-        const URL = '/kirim_simpul'
-        const xhr = new XMLHttpRequest();
-        sender = JSON.stringify([id, id2]);
-        xhr.open('POST', URL);
-        xhr.send(sender);
-        console.log("send Simpul");
-      }
       function initMap() {
         const myLatlng = { lat: -6.8915, lng: 107.6107 };
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -50,14 +42,20 @@
         var hasil = '{{hasil|tojson}}';
         hasil = JSON.parse(hasil);
         console.log(hasil);
-        console.log(hasil[1]);
+        //console.log(hasil[1]);
         //console.log(matrix);
         // Configure the click listener.
-        infowindow = new google.maps.InfoWindow({
-          content: '<p>' + hasil[0] + ' meter' + '</p>',
-        });
-            
-            
+        if(typeof hasil[0] == 'string'){
+          infowindow = new google.maps.InfoWindow({
+            content: '<p>Path Not Found</p>',
+          });
+        }
+        else{
+          infowindow = new google.maps.InfoWindow({
+            content: '<p>' + hasil[0] + ' meter' + '</p>',
+          });
+        }
+        
             //bikin marker
             for (var j = 1; j<=Object.keys(graph).length;j++){
                 
@@ -92,21 +90,25 @@
                     }
                 }
             }
-            console.log(coords);
-            for (var i = 0; i<Object.keys(hasil[1]).length;i++ ){
-                console.log(i);
-                coordHasil.push(coords[node.indexOf(hasil[1][i])-1]);
+            //console.log(coords);
+            if(typeof hasil[0] != 'string'){
+              for (var i = 0; i<Object.keys(hasil[1]).length;i++ ){
+                  console.log(i);
+                  coordHasil.push(coords[node.indexOf(hasil[1][i])-1]);
+              }
+              //console.log(coordHasil);
+              var line1= new google.maps.Polyline({
+                              path: coordHasil,
+                              geodesic: true,
+                              strokeColor: '#0000FF',
+                              strokeOpacity: 1.0,
+                              strokeWeight: 2
+                          });
+              line1.setMap(map); 
+              infowindow.open(map, marker1);
             }
-            console.log(coordHasil);
-            var line1= new google.maps.Polyline({
-                            path: coordHasil,
-                            geodesic: true,
-                            strokeColor: '#0000FF',
-                            strokeOpacity: 1.0,
-                            strokeWeight: 2
-                        });
-            line1.setMap(map); 
-            infowindow.open(map, marker1);  
+            infowindow.open(map, marker1);
+
       }
     </script>
     {% block head %}{% endblock %}

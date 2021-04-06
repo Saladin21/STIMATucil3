@@ -75,7 +75,8 @@ def answer():
     print(graph)
     print(matrix)
     hasil = fp.Astar(buatAstar[0], buatAstar[1])
-    hasil[0] = round(hasil[0], 3)
+    if(type(hasil[0]) != str):
+        hasil[0] = round(hasil[0], 3)
     print(hasil)
     return render_template('answer.html', graph=graph, matrix=matrix, hasil = hasil, node=node)
 

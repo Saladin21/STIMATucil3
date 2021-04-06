@@ -36,7 +36,7 @@ class findPath:
     def Astarrec(self, listActive, simpulTujuan):
         print(listActive)
         if(len(listActive) == 0):
-            return "ga nyambung"
+            return ["ga nyambung", [simpulTujuan]]
         else:
             element = listActive[0]
             if(element[1][-1] == simpulTujuan):
@@ -55,14 +55,9 @@ class findPath:
         for i in range(len(self.node)):
             if(self.matrix[x][i] == 1):
                 temp = element[1].copy()
-                """
-                kalo mau bisa detect path tidak ditemukan
                 if self.node[i] not in temp:
                     temp.append(self.node[i])
                     hasil.append([g+self.EucDist(element[1][-1], self.node[i])+self.EucDist(self.node[i], simpulTujuan), temp])
-                """
-                temp.append(self.node[i])
-                hasil.append([g+self.EucDist(element[1][-1], self.node[i])+self.EucDist(self.node[i], simpulTujuan), temp])
         return hasil
 
     def jatot(self, l): # jarak total
