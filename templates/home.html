@@ -2,38 +2,9 @@
 <html>
   <head>
     <title>IF_MAP</title>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='tombol.css') }}">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 90%;
-        width : 80%;
-        margin: 1;
-        padding: 1;
-      }
-      .tombolAtas {
-          position: absolute;
-          width: 174px;
-          height: 63px;
-          left: 1097px;
-          top: 96px;
-      }
-
-      .tombolBawah {
-          position: absolute;
-          width: 174px;
-          height: 63px;
-          left: 1097px;
-          top: 202px;
-      }
-    </style>
+ 
     <script>
         var markers = []
         var id = 1;

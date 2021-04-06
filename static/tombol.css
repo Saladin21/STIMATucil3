@@ -1,0 +1,26 @@
+      #map {
+        height: 100%;
+      }
+
+      html,
+      body {
+        height: 90%;
+        width : 80%;
+        margin: 1;
+        padding: 1;
+      }
+      .tombolAtas {
+          position: relative;
+          width: 174px;
+          height: 63px;
+          left: 1097px;
+          top: -550px;
+      }
+
+      .tombolBawah {
+          position: relative;
+          width: 174px;
+          height: 63px;
+          left: 1097px;
+          top: -500px;
+      }
