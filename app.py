@@ -37,7 +37,7 @@ def uploadFile():
                 matrix.append(list(tempisi))
         elif(namafile == "Graph.txt"):
             location = content.strip().split('\n')
-            for i in range(1, len(location)):
+            for i in range(1, int(location[0])+1):
                 temp = location[i].strip('\r').split(' ' , 2)
                 graph[temp[2]] = [float(temp[0]), float(temp[1])]
                 node.append(temp[2])
@@ -59,7 +59,9 @@ def sendGraph():
     for j in range(len(graph)):
         matrix.append([0 for i in range(len(graph))])
 
-    #print(matrix)
+    print(matrix)
+    print(graph)
+    print(node)
     return render_template('addEdge.html', graph=graph, node=node)
 
 @app.route('/question', methods =['POST'])
@@ -81,8 +83,9 @@ def answer():
 @app.route('/this-route', methods=['GET', 'POST'])
 def thisRoute():
     information = json.loads(request.data )
-    graph[information[0]] = [information[1]["lat"], information[1]["lng"]]
-    print(graph)
+    graph[str(information[0])] = [information[1]["lat"], information[1]["lng"]]
+    node.append(str(information[0]))
+    #print(graph)
     return "1"
 
 @app.route('/kirim_matriks', methods=['GET', 'POST'])
