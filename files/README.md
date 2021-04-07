@@ -32,9 +32,9 @@ pada halaman hasil terdapat juga pilihan untuk menyimpan input dalam bentuk:
 file input terdiri dari 2 file yaitu file matriks dan file graph yang memiliki format txt. nama dari file graph harus didului oleh "Graph" sedangkan nama dari file matriks didului oleh "Matriks". isi dari file graph adalah baris pertama yang menyatakan jumlah simpul n, dan n baris selanjutnya yang menyatakan simpul dengan format langitude<spasi>latitude<spasi>nama simpul.  
 contoh:
 
-`10  
--6.892659329143158 107.61042200983438 Pintu Utama ITB  
--6.892622915818573 107.60874173131332 Simpang Aula Barat  
+`10  <br />
+-6.892659329143158 107.61042200983438 Pintu Utama ITB  <br />
+-6.892622915818573 107.60874173131332 Simpang Aula Barat  <br />
 -6.89245443845861 107.61187380880716 Simpang Aula Timur`<br />
 ## Inspiration
 Add here credits. Project inspired by..., based on...
