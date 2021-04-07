@@ -36,7 +36,7 @@ file input terdiri dari 2 file yaitu file matriks dan file graph yang memiliki f
 contoh:
 
 ```
-10
+3
 -6.892659329143158 107.61042200983438 Pintu Utama ITB
 -6.892622915818573 107.60874173131332 Simpang Aula Barat
 -6.89245443845861 107.61187380880716 Simpang Aula Timur
