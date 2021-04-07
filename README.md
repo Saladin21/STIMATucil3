@@ -54,5 +54,5 @@ tekan tombol use map, lalu ikuti perintah yang ada di halaman selanjutnya.
 ## Inspiration
 https://community.esri.com/t5/coordinate-reference-systems/distance-on-a-sphere-the-haversine-formula/ba-p/902128
 
-## Contact
+## Author
 Created by Syihabuddin Yahya Muhammad - 13519149 dan Ahmad Saladin - 13519187
