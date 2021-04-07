@@ -30,8 +30,8 @@ pada halaman hasil terdapat juga pilihan untuk menyimpan input dalam bentuk:
 * file matriks
 
 ## How to Use
-### jika ingin menggunakan file input, maka tekan tombol choose file pada halaman utama, pilih file graph dan matriks, tekan tombol submit, lalu tekan tombol next.
-untuk mengganti file input cukup muat ulang halaman utama, dan pilih file yang baru.
+### menggunakan file input
+jika ingin menggunakan file input, maka tekan tombol choose file pada halaman utama, pilih file graph dan matriks, tekan tombol submit, lalu tekan tombol next. untuk mengganti file input cukup muat ulang halaman utama, dan pilih file yang baru.
 file input terdiri dari 2 file yaitu file matriks dan file graph yang memiliki format txt. nama dari file graph harus didului oleh "Graph" sedangkan nama dari file matriks didului oleh "Matriks". isi dari file graph adalah baris pertama yang menyatakan jumlah simpul n, dan n baris selanjutnya yang menyatakan simpul dengan format langitude(spasi)latitude(spasi)nama simpul.  
 contoh:
 
