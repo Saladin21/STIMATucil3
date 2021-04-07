@@ -22,7 +22,7 @@ buat virtual environtment, install flask, dan jalankan:
 ## Features
 terdapat 2 macam input yaitu:
 * input dari file, terdapat 2 file yaitu file graph dan file matriks
-* input langsung dari google maps
+* input langsung dari google maps  
 pada halaman hasil terdapat juga pilihan untuk menyimpan input dalam bentuk:
 * file graph
 * file matriks
