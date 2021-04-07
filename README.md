@@ -7,7 +7,7 @@
 * [Features](#features)
 * [How to Use](#How-to-Use)
 * [Inspiration](#inspiration)
-* [Contact](#contact)
+* [Author](#author)
 
 ## General info
 projek untuk membuat algoritma Path Finder A* menggunakan google maps API
