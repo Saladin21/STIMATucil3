@@ -30,7 +30,9 @@ pada halaman hasil terdapat juga pilihan untuk menyimpan input dalam bentuk:
 * file matriks
 
 ## How to Use
-file input terdiri dari 2 file yaitu file matriks dan file graph yang memiliki format txt. nama dari file graph harus didului oleh "Graph" sedangkan nama dari file matriks didului oleh "Matriks". isi dari file graph adalah baris pertama yang menyatakan jumlah simpul n, dan n baris selanjutnya yang menyatakan simpul dengan format langitude<spasi>latitude<spasi>nama simpul.  
+### jika ingin menggunakan file input, maka tekan tombol choose file pada halaman utama, pilih file graph dan matriks, tekan tombol submit, lalu tekan tombol next.
+untuk mengganti file input cukup muat ulang halaman utama, dan pilih file yang baru.
+file input terdiri dari 2 file yaitu file matriks dan file graph yang memiliki format txt. nama dari file graph harus didului oleh "Graph" sedangkan nama dari file matriks didului oleh "Matriks". isi dari file graph adalah baris pertama yang menyatakan jumlah simpul n, dan n baris selanjutnya yang menyatakan simpul dengan format langitude(spasi)latitude(spasi)nama simpul.  
 contoh:
 
 ```
@@ -39,6 +41,14 @@ contoh:
 -6.892622915818573 107.60874173131332 Simpang Aula Barat
 -6.89245443845861 107.61187380880716 Simpang Aula Timur
 ```
+file matriks berisi representatif edge graf sebagai matriks. file matriks berisi n baris, dimana setiap baris berisi n angka 0 atau 1 yang dipisahkan oleh spasi. 0 menyatakan bahwa terdapat tidak ada jalur antara simpul ke baris tersebut dan simpul ke kolom tersebut. contoh:
+```
+0 1 1
+1 0 0
+1 0 0
+```
+### memilih simpul langsung dari peta
+tekan tombol use map, lalu ikuti perintah yang ada di halaman selanjutnya.
 ## Inspiration
 Add here credits. Project inspired by..., based on...
 
