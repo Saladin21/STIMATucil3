@@ -5,7 +5,6 @@
 * [General info](#general-info)
 * [Setup](#setup)
 * [Features](#features)
-* [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
 
@@ -13,10 +12,7 @@
 projek untuk membuat algoritma Path Finder A* menggunakan google maps API
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
-
-## Code Examples
-disclaimer: jalankan perintah ini pada folder utama(STIMATucil3)
+disclaimer: jalankan perintah ini pada folder utama(STIMATucil3)\n
 buat virtual environtment, install flask, dan jalankan:
 
 `$ pip install virtualenv  
