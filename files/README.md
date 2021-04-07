@@ -5,6 +5,7 @@
 * [General info](#general-info)
 * [Setup](#setup)
 * [Features](#features)
+* [How to Use](#How to Use)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
 
